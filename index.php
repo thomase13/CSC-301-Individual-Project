@@ -20,10 +20,11 @@ require_once('classes/companion.php');
 	<body>
 	<div class="container">
 	<div align="right">
-	<button onclick="window.location.href='signup.php';">Sign Up</button>
+	<button type="button" class="btn btn-primary" onclick="window.location.href='signup.php';">Sign Up</button>
 	</div>
 		<h1>Companion Acquirer</h1><br>
-		<a href="comp_manage/create.php">Add a companion</a>
+		<button type="button" class="btn btn-success"><onclick="window.location.href='comp_manage/create.php'">Add a companion</button>
+		<br><br>
 		<?php 
 		$companion=new Companion();
 		$companion->index();
