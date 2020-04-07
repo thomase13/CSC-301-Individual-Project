@@ -68,7 +68,9 @@ class User{
 		$result=$pdo->query('SELECT * FROM users');
 		//PROCESS RESULT
 		while($record=$result->fetch()) {
-			echo 'ID: '.$record['ID'].'<br> Email:'.$record['email'].'<br> Username: '.$record['username'].'<br><br>';
+			echo 'ID: '.$record['ID'].'<br> Email:'.$record['email'].'<br> Username: '.$record['username'].'<br>';
+			echo '<a href="../admin/user_edit.php?id='.$record['ID'].'">Edit this user</a><br>';
+			echo '<a href="../admin/user_delete.php?id='.$record['ID'].'" style="color:red;">Delete this user</a><br><br><br>';
 		}
 	}
 }
