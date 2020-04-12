@@ -64,13 +64,15 @@ class User{
 	public function index() {
 		require_once('database.php');
 		$pdo=DB::connect();
+		$edit = 'user_edit.php';
+		$delete ='user_delete.php';
 		
 		$result=$pdo->query('SELECT * FROM users');
 		//PROCESS RESULT
 		while($record=$result->fetch()) {
-			echo 'ID: '.$record['ID'].'<br> Email:'.$record['email'].'<br> Username: '.$record['username'].'<br>';
-			echo '<a href="../admin/user_edit.php?id='.$record['ID'].'">Edit this user</a><br>';
-			echo '<a href="../admin/user_delete.php?id='.$record['ID'].'" style="color:red;">Delete this user</a><br><br><br>';
+			echo 'ID: '.$record['ID'].'<br>Email: '.$record['email'].'<br> Username: '.$record['username'].'<br>';
+			echo '<a href="user_edit.php?id='.$record['ID'].'" style="margin-left:0px; margin-right:20px; color:blue;">Edit this user</a>';
+			echo '<a href="user_delete.php?id='.$record['ID'].'" style="color:red;">Delete this user</a><br<br><br><br>';
 		}
 	}
 }

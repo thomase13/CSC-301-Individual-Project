@@ -18,7 +18,7 @@ class Companion{
 		$query='INSERT INTO companions (name, picture, age, gender, size, health) VALUES (?,?,?,?,?,?)';
 		$q=$pdo->prepare($query);
 		$q->execute([$this->name,$this->picture,$this->age,$this->gender,$this->size,$this->health]);
-		echo 'You companion has been added<br>';
+		echo 'Your companion has been added<br>';
 		echo '<a href="index.php">Go back to home page</a>';
 	}
 	
@@ -87,14 +87,38 @@ class Companion{
 		$pdo=DB::connect();
 		
 		$result=$pdo->query('SELECT * FROM companions');
-		
 		//PROCESS RESULT
 		while($record=$result->fetch()) {
-			echo '<p> ID: '.$record['id'].'</p>';
-			echo '<p> Name: <a href="../detail.php?id='.$record['id'].'"</a>'.$record['name'].'<p>'; //NAME
-			echo '<a href="../comp_manage/edit.php?id='.$record['id'].'">Edit this companion</a><br>';
-			echo '<a href="../comp_manage/delete.php?id='.$record['id'].'" style="color:red;">Delete this companion</a><br><br>';
+			echo 'ID: '.$record['id'].'<br>Name: '.$record['name'].'<br>';
+			echo '<a href="comp_detail.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">See details</a>';
+			echo '<a href="comp_edit.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">Edit</a>';
+			echo '<a href="comp_delete.php?id='.$record['id'].'" style="color:red;">Delete</a><br<br><br><br>';
 		}
+	}
+	
+	public function admin_detail() {
+		require_once('database.php');
+		$pdo=DB::connect();
+
+		$query='SELECT * FROM companions WHERE ID=?';
+		$q=$pdo->prepare($query);
+		$q->execute([$this->id]);
+		
+		
+		if($q->rowCount() == 0) {
+			echo '<p>There is no result matching your query.</p>' ;
+			die();
+		}
+		
+		$record=$q->fetch();
+		echo 'Name: '.$record['name'].'<br>';
+		echo 'Picture URL: '.$record['picture'].'<br>';
+		echo 'Age: '.$record['age'].'<br>';
+		echo 'Gender: '.$record['gender'].'<br>';
+		echo 'Size: '.$record['size'].'<br>';
+		echo 'Health: '.$record['health'].'<br>';
+		echo '<a href="comp_edit.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">Edit</a>';
+		echo '<a href="comp_delete.php?id='.$record['id'].'" style="color:red;">Delete</a>';
 	}
 
 }
