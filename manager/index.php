@@ -1,63 +1,41 @@
 <?php
-session_start();
-require_once('../classes/database.php');
-DB::connect();
-require_once('../classes/user.php');
-if(count($_POST)>0) {
-	if(isset($error{0})){
-		$message=$error;
-		$alert_type='danger';
-	}
-	else{
-		$message='The user has signed up';
-		$alert_type='success';
-	}
-}
-if(count($_POST)>0) echo '<div class="alert alert-'.$alert_type.'" role="alert">'.$message.'</div>';
-	
-	
-$user=new user;
-$user->email=$_POST['email'];
-$user->username=$_POST['username'];
-$user->password=$_POST['password'];
-$user->create();
+require_once('../classes/companion.php');
 ?>
 
-<html>
-<head>
+<?php
+?>
+
+<doctype html>
+<html lang="en">
+	<head>
+
 		<meta charset="uft-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<title>Sign Up</title>
+		<title>Companion Index</title>
 		
 		  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	</head>
-<body>
-<div class="container">
-	<h1>Sign Up</h1>
-	<form method="POST">
-		<div class="form-group">
-		<label>Email</label>
-		<input type="email" class="form-control" name="email" />
-	</div>
-		<div class="form-group">
-			<label>Username</label>
-			<input type="text" class="form-control" name="username" />
-	</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password" />
-			<br>
-			</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
 	
+	<style>
+	* {
+		margin:5px;
+	}
+	</style>
+	
+	</head>
+	<body>
+		<h1>Companion Index</h1><br>
+		<button type="button" class="btn btn-success" onclick="window.location.href='comp_manage/create.php'">Add a companion</button>
+		<br><br>
+		<?php 
+		$companion=new Companion();
+		$companion->admin_index();
+		?>
 </body>
 </html>
-

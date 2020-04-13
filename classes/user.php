@@ -24,7 +24,7 @@ class User{
 		$query='INSERT INTO users (email, username, password) VALUES (?,?,?)';
 		$q=$pdo->prepare($query);
 		$q->execute([$this->email,$this->username,password_hash($this->password,PASSWORD_DEFAULT)]);
-		echo 'Congratulations, you have signed up. <br> <a href="index.php">Back to home page</a>';
+		echo '<a href="index.php">Back to home page</a>';
 	}
 	
 	public function modify() {

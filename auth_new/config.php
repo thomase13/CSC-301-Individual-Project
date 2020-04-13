@@ -1,8 +1,5 @@
 <?php
-
-class DB {
-	public static function connect(){
-		$settings=[
+$settings=[
 			'host'=>'localhost',
 			'db'=>'users',
 			'user'=>'root',
@@ -17,7 +14,4 @@ class DB {
 		
 		//CONNECT TO DATABASE
 		$pdo = new PDO('mysql:host='.$settings['host'].';dbname='.$settings['db'].';charset=utf8mb4',$settings['user'],$settings['pass'],$opt);
-		
-		return $pdo;
-	}
-}
+?>

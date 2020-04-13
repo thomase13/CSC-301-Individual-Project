@@ -1,26 +1,19 @@
 <?php
-session_start();
-require_once('../classes/database.php');
-DB::connect();
-require_once('../classes/user.php');
 if(count($_POST)>0) {
-	if(isset($error{0})){
-		$message=$error;
-		$alert_type='danger';
-	}
-	else{
-		$message='The user has signed up';
-		$alert_type='success';
-	}
+	require_once('../classes/database.php');
+	DB::connect();
+	require_once('../classes/user.php');
+	
+	$id=$_GET['id'];
+	
+	$user=new user;
+	$user->email=$_POST['email'];
+	$user->username=$_POST['username'];
+	$user->password=$_POST['password'];
+	$user->id=$id;
+	$user->modify();
+	
 }
-if(count($_POST)>0) echo '<div class="alert alert-'.$alert_type.'" role="alert">'.$message.'</div>';
-	
-	
-$user=new user;
-$user->email=$_POST['email'];
-$user->username=$_POST['username'];
-$user->password=$_POST['password'];
-$user->create();
 ?>
 
 <html>
@@ -30,7 +23,7 @@ $user->create();
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<title>Sign Up</title>
+		<title>Edit a User</title>
 		
 		  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -40,7 +33,7 @@ $user->create();
 	</head>
 <body>
 <div class="container">
-	<h1>Sign Up</h1>
+	<h1>Edit this user</h1>
 	<form method="POST">
 		<div class="form-group">
 		<label>Email</label>
@@ -54,10 +47,9 @@ $user->create();
 			<label>Password</label>
 			<input type="password" class="form-control" name="password" />
 			<br>
-			</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	
+	</div>
 </body>
 </html>
 
