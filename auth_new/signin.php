@@ -1,30 +1,31 @@
 <?php
-session_start();
+//FUNCTION FOR CHECKING USER
+function getUser($table,$email,$username,$password) {
+	$query = "SELECT username FROM users WHERE email = '$email' AND username = '$username' AND password = '$password'";
+	$result = $pdo->query($query);
+	return 
+}
+
 require_once('../classes/database.php');
-DB::connect();
 require_once('../classes/user.php');
-if(count($_POST)>0) {
-	if(isset($error{0})){
-		$message=$error;
-		$alert_type='danger';
-	}
-	else{
-		$message='The user has signed up';
-		$alert_type='success';
+
+$loggedin = false;
+$error = false;
+
+//CHECK IF FORM SUBMITTED
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+	
+	//HANDLE FORM
+	if(!empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+		
+		if ( (strtolower($_POST['email']) == b
 	}
 }
-if(count($_POST)>0) echo '<div class="alert alert-'.$alert_type.'" role="alert">'.$message.'</div>';
-	
-	
-$user=new user;
-$user->email=$_POST['email'];
-$user->username=$_POST['username'];
-$user->password=$_POST['password'];
-$user->create();
 ?>
 
 <html>
 <head>
+
 		<meta charset="uft-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
@@ -39,9 +40,8 @@ $user->create();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 <body>
-<div class="container">
-	<h1>Sign Up</h1>
-	<form method="POST">
+<h1>Sign In</h1>
+<form method="POST">
 		<div class="form-group">
 		<label>Email</label>
 		<input type="email" class="form-control" name="email" />
@@ -54,10 +54,7 @@ $user->create();
 			<label>Password</label>
 			<input type="password" class="form-control" name="password" />
 			<br>
-			</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	
 </body>
 </html>
-

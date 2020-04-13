@@ -90,7 +90,7 @@ class Companion{
 		//PROCESS RESULT
 		while($record=$result->fetch()) {
 			echo 'ID: '.$record['id'].'<br>Name: '.$record['name'].'<br>';
-			echo '<a href="comp_detail.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">See details</a>';
+			echo '<a href="detail.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">See details</a>';
 			echo '<a href="comp_edit.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">Edit</a>';
 			echo '<a href="comp_delete.php?id='.$record['id'].'" style="color:red;">Delete</a><br<br><br><br>';
 		}
