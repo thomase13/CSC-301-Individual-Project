@@ -1,26 +1,17 @@
 <?php
-session_start();
-require_once('../classes/database.php');
-DB::connect();
-require_once('../classes/user.php');
+require('../classes/database.php');
+require_once('../classes/auth.php');
+if(Auth::logged_in()) header('location: ../manager/index.php');
+
 if(count($_POST)>0) {
-	if(isset($error{0})){
-		$message=$error;
-		$alert_type='danger';
-	}
-	else{
-		$message='The user has signed up';
-		$alert_type='success';
-	}
+	$error=Auth::signUp($_POST,'signin.php');
+	$message=$error;
+	$alert_type='danger';
 }
-if(count($_POST)>0) echo '<div class="alert alert-'.$alert_type.'" role="alert">'.$message.'</div>';
-	
-	
-$user=new user;
-$user->email=$_POST['email'];
-$user->username=$_POST['username'];
-$user->password=$_POST['password'];
-$user->create();
+
+if(count($_POST)>0) {
+	echo '<div class="alert alert-'.$alert_type.'"role="alert">'.$message.'</div>';
+}
 ?>
 
 <html>
@@ -61,3 +52,5 @@ $user->create();
 </body>
 </html>
 
+
+<p><a href="signin.php">Sign In to your existing account</a></p>

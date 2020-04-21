@@ -1,16 +1,35 @@
 <?php
-require_once('../classes/database.php');
+require_once('../../../classes/database.php');
+DB::connect();
+require_once('../../../classes/admin.php');
+if(count($_POST)>0) {
+	if(isset($error{0})){
+		$message=$error;
+		$alert_type='danger';
+	}
+	else{
+		$message='The admin has been created';
+		$alert_type='success';
+	}
+}
+if(count($_POST)>0) echo '<div class="alert alert-'.$alert_type.'" role="alert">'.$message.'</div>';
+	
+	
+$admin=new admin;
+$admin->email=$_POST['email'];
+$admin->adminname=$_POST['username'];
+$admin->password=$_POST['password'];
+$admin->create();
 ?>
 
 <html>
 <head>
-
 		<meta charset="uft-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<title>Admin</title>
+		<title>Sign Up</title>
 		
 		  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -19,6 +38,25 @@ require_once('../classes/database.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 <body>
-<p><a href="users/user_index.php">Manage Users</p>
-<p><a href="comp/comp_index.php">Manage Companions</p>
+<div class="container">
+	<h1>Sign Up</h1>
+	<form method="POST">
+		<div class="form-group">
+		<label>Email</label>
+		<input type="email" class="form-control" name="email" />
+	</div>
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control" name="username" />
+	</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password" />
+			<br>
+			</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	
 </body>
+</html>
+

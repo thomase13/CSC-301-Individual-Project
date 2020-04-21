@@ -53,9 +53,7 @@ class Companion{
 		//PROCESS RESULT
 		while($record=$result->fetch()) {
 			echo '<h1><a href="detail.php?id='.$record['id'].'"</a>'.$record['name'].'<br></h1>'; //NAME
-			echo '<img src='.$record['picture'].' alt="Companion Picture" style="height:200px"><br> ';	//IMAGE
-			echo '<a href="comp_manage/edit.php?id='.$record['id'].'">Edit this companion</a><br>';
-			echo '<a href="comp_manage/delete.php?id='.$record['id'].'" style="color:red;">Delete this companion</a><br><br>';
+			echo '<img src='.$record['picture'].' alt="Companion Picture" style="height:200px"><br><br> ';	//IMAGE
 		}
 	}
 	
@@ -80,6 +78,21 @@ class Companion{
 		echo '<p>Gender: '.$record['gender'].'</p>';
 		echo '<p>Size: '.$record['size'].'</p>';
 		echo '<p>Health: '.$record['health'].'</p>';
+	}
+	
+	public function manager_index() {
+		require_once('database.php');
+		$pdo=DB::connect();
+		
+		$result=$pdo->query('SELECT * FROM companions');
+		//PROCESS RESULT
+		while($record=$result->fetch()) {
+			echo '<h1><a href="detail.php?id='.$record['id'].'"</a>'.$record['name'].'<br></h1>'; //NAME
+			echo '<img src='.$record['picture'].' alt="Companion Picture" style="height:200px"><br> ';	//IMAGE
+			echo '<a href="comp_edit.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">Edit</a>';
+			echo '<a href="comp_delete.php?id='.$record['id'].'" style="color:red;">Delete</a><br>';
+			echo '<a href="../like/like_add.php?id='.$record['id'].'">Like</a>';
+		}
 	}
 	
 	public function admin_index() {

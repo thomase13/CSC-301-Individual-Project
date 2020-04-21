@@ -1,12 +1,13 @@
 <?php
-require_once('../classes/database.php');
-require_once('../classes/auth.php');
+require_once('../../classes/database.php');
+require_once('../../classes/admin.php');
+require_once('../../classes/auth.php');
 
 //If the user is already logged in, take them back to the index page.
-if(Auth::logged_in()) header('location: ../manager/index.php');
+if(Auth::logged_in()) header('location: ../../admin/index.php');
 
 if(count($_POST)>0){
-	$error=Auth::signin($_POST,'../manager/index.php');
+	$error=Admin::signIn($_POST,'../../admin/index.php');
 	$message=$error;
 	$alert_type='danger';
 }
@@ -26,7 +27,7 @@ if(count($_POST)>0) {
 		<title>Sign In</title>
 	</head>
 <body>
-<h1>Sign In</h1>
+<h1>Admin Sign In</h1>
 <form method="POST">
 		<div class="form-group">
 		<label>Email</label>
@@ -42,7 +43,6 @@ if(count($_POST)>0) {
 			<br>
 	<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	<p class=mt-3"><a href="signup.php">Create an account</a></p>
 </body>
 <footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

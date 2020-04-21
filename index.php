@@ -19,9 +19,10 @@ require_once('classes/companion.php');
 	<div class="container">
 	<div align="right">
 	<button type="button" class="btn btn-primary" onclick="window.location.href='auth_new/signup.php';">Sign Up</button>
+	<button type="button" class="btn btn-primary" onclick="window.location.href='auth_new/signin.php';">Sign In</button>
+	<button type="button" class="btn btn-primary" onclick="window.location.href='auth_new/signout.php';">Sign Out</button>
 	</div>
 		<h1>Companion Acquirer</h1><br>
-		<button class="btn btn-success" onclick="window.location.href = '../comp_manage/create.php';">Add a companion</button><br>
 		
 		<?php 
 		$companion=new Companion();

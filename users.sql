@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2020 at 09:05 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Apr 21, 2020 at 03:48 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `users`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `ID` int(10) UNSIGNED NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `username` varchar(40) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`ID`, `email`, `username`, `password`) VALUES
+(1, NULL, NULL, '$2y$10$/XnimgUKFeW.nYc5Wr0rie/wiECGdsMOesriUOIc5tBmG20gC1Vgi'),
+(2, 'abcd@efgh.com', 'abcdefgh', '$2y$10$zXYk.4M8YoBtZirxI1vUjOWnHMPVbgOJ.lxfAGxabEG5Bnnuzm6Ri');
 
 -- --------------------------------------------------------
 
@@ -53,6 +73,23 @@ INSERT INTO `companions` (`id`, `name`, `picture`, `age`, `gender`, `size`, `hea
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `comp_id` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`comp_id`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -60,7 +97,7 @@ CREATE TABLE `users` (
   `ID` int(10) UNSIGNED NOT NULL,
   `email` varchar(60) CHARACTER SET utf8mb4 DEFAULT NULL,
   `username` varchar(40) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `password` varchar(25) CHARACTER SET utf8mb4 DEFAULT NULL
+  `password` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
@@ -71,11 +108,23 @@ INSERT INTO `users` (`ID`, `email`, `username`, `password`) VALUES
 (1, 'thomase13@mymail.nku.edu', 'thomase13', '1234abcd'),
 (2, 'vitamin.yes.2000@gmail.com', 'Vitamin Yes', '12345678'),
 (9, 'evan@gmail.com', 'evan', '$2y$10$lpuCWX2XfGlnNQdzDZ'),
-(11, 'evant@gmail.com', 'evant', '$2y$10$k/GZniAffABGHO0j3g');
+(11, 'evant@gmail.com', 'evant', '$2y$10$k/GZniAffABGHO0j3g'),
+(14, 'a@aol.com', 'AAAAAAAA', '$2y$10$DqhMjg0MV8mcoM1DOBNY6O8djp4rrNvPrsHr99d1ZYa7czANw4kmG'),
+(15, NULL, NULL, '$2y$10$AA08X.uJpzL5e9ufWSne9uCetR/2DQfKabxPM1AHyyQFdfT7Bl.F6'),
+(16, 'b@bol.com', 'BBBBBBBB', '$2y$10$/qInMZSHOycaLgTtSinIcOEIwLTkP.T/mZTu7VoYUnU6EUMLM166C'),
+(17, 'abcd@efgh.com', 'abcdefgh', '$2y$10$JNrhVjr9TtwBEtvlmPIBC.xkactnIJc8EMRqQr.4r0xuaPyOwFVSa');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `companions`
@@ -96,6 +145,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `companions`
 --
 ALTER TABLE `companions`
@@ -105,7 +160,7 @@ ALTER TABLE `companions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
