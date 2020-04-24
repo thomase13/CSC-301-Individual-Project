@@ -19,7 +19,7 @@ require_once("../classes/companion.php");
 		</style>
 		</head>
 		<body>
-		<a href="comp_index.php">Back to index page</a>
+		<a href="index.php">Back to index page</a>
 		<br><br>
 			<div class="container">
 			<?php

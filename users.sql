@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2020 at 03:48 AM
+-- Generation Time: Apr 24, 2020 at 07:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.16
 
@@ -40,7 +40,8 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`ID`, `email`, `username`, `password`) VALUES
 (1, NULL, NULL, '$2y$10$/XnimgUKFeW.nYc5Wr0rie/wiECGdsMOesriUOIc5tBmG20gC1Vgi'),
-(2, 'abcd@efgh.com', 'abcdefgh', '$2y$10$zXYk.4M8YoBtZirxI1vUjOWnHMPVbgOJ.lxfAGxabEG5Bnnuzm6Ri');
+(2, 'abcd@efgh.com', 'abcdefgh', '$2y$10$zXYk.4M8YoBtZirxI1vUjOWnHMPVbgOJ.lxfAGxabEG5Bnnuzm6Ri'),
+(4, 'b@bol.com', 'BBBBBBBB', '$2y$10$T8iMjfEXk7Uw/NPaO0WWheyTzJNnjQpZbC/vTFiSNKXIrOWosqd5u');
 
 -- --------------------------------------------------------
 
@@ -109,8 +110,6 @@ INSERT INTO `users` (`ID`, `email`, `username`, `password`) VALUES
 (2, 'vitamin.yes.2000@gmail.com', 'Vitamin Yes', '12345678'),
 (9, 'evan@gmail.com', 'evan', '$2y$10$lpuCWX2XfGlnNQdzDZ'),
 (11, 'evant@gmail.com', 'evant', '$2y$10$k/GZniAffABGHO0j3g'),
-(14, 'a@aol.com', 'AAAAAAAA', '$2y$10$DqhMjg0MV8mcoM1DOBNY6O8djp4rrNvPrsHr99d1ZYa7czANw4kmG'),
-(15, NULL, NULL, '$2y$10$AA08X.uJpzL5e9ufWSne9uCetR/2DQfKabxPM1AHyyQFdfT7Bl.F6'),
 (16, 'b@bol.com', 'BBBBBBBB', '$2y$10$/qInMZSHOycaLgTtSinIcOEIwLTkP.T/mZTu7VoYUnU6EUMLM166C'),
 (17, 'abcd@efgh.com', 'abcdefgh', '$2y$10$JNrhVjr9TtwBEtvlmPIBC.xkactnIJc8EMRqQr.4r0xuaPyOwFVSa');
 
@@ -148,7 +147,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `companions`

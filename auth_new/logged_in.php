@@ -5,7 +5,8 @@ require_once('../classes/auth.php');
 if (Auth::logged_in()) {
 	echo 'Yes';
 }
-else {
+else if (!Auth::logged_in()){
 	echo 'No';
 }
+else echo ('No response');
 ?>

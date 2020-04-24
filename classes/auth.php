@@ -37,13 +37,13 @@ class Auth {
 			//store user in db
 			$query=$pdo->prepare('INSERT INTO users(email,username,password) VALUES(?,?,?)');
 			$query->execute([$data['email'],$data['username'],$data['password']]);
+			$_SESSION['loggedin'] = true;
 			header('location: '.$header_URL);
 			
 		}
 	}
 	
 	static function signIn($data,$header_URL){
-		session_start();
 		if(count($data)>0){
 			//Check if all fields are filled
 			if(!isset($data['email']{0}) || !isset($data['username']{0}) || !isset($data['password']{0})) return 'You must enter e-mail, username and password';
@@ -75,7 +75,9 @@ class Auth {
 			$user=$query->fetch();
 			
 			if(!password_verify($data['password'],$user['password'])) return 'Incorrect Password';
-			$_SESSION['user/ID']=$user['ID'];
+			session_start();
+			$_SESSION["loggedIn"]=true;
+			$_SESSION['username']=$data['username'];
 			header('location:'.$header_URL);
 			
 			}

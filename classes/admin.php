@@ -112,4 +112,44 @@ class Admin{
 		}
 	}
 	
+	static function login($data, $header_URL) {
+		if(count($data)>0){
+			//Check if all fields are filled
+			if(!isset($data['email']{0}) || !isset($data['username']{0}) || !isset($data['password']{0})) return 'You must enter e-mail, username and password';
+			
+			//Validate email
+			if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) return 'Please enter a valid email address';
+			$data['email']=strtolower($data['email']);
+			
+			//Validate the username
+			$data['username']=trim($data['username']);
+			if(strlen($data['username'])<6) return 'Username must be at least 6 characters long';
+			
+			// Validate the password
+			$data['password']=trim($data['password']);
+			if(strlen($data['password'])<8) return 'Your password must be at least 8 characters long.';
+			
+			$pdo=DB::connect(); //open connection to db
+			
+			//check for correct email
+			$query=$pdo->prepare('SELECT ID, password FROM admins WHERE email=?');
+			$query->execute([$data['email']]);
+			if($query->rowCount()==0) return 'E-mail not associated with any accounts';
+			$user=$query->fetch();
+			
+			//check for correct username
+			$query=$pdo->prepare('SELECT ID, password FROM admins WHERE username=?');
+			$query->execute([$data['username']]);
+			if($query->rowCount()==0) return 'Username not associated with any accounts.';
+			$user=$query->fetch();
+			
+			if(!password_verify($data['password'],$user['password'])) return 'Incorrect Password';
+			session_start();
+			$_SESSION["loggedIn"]=true;
+			$_SESSION['username']=$data['username'];
+			header('location:'.$header_URL);
+			
+			}
+	}
+	
 }

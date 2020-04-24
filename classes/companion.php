@@ -72,12 +72,13 @@ class Companion{
 		}
 		
 		$record=$q->fetch();
+		echo '<head><title>'.$record['name'].'</title></head>';
 		echo '<h1 "align:center">'.$record['name'].'</h1>';
 		echo '<img src='.$record['picture'].' alt="Companion Picture" style="height:400px"><br><br> ';
 		echo '<p>Age: '.$record['age'].'</p>';
 		echo '<p>Gender: '.$record['gender'].'</p>';
 		echo '<p>Size: '.$record['size'].'</p>';
-		echo '<p>Health: '.$record['health'].'</p>';
+		echo '<p>Health: '.$record['health'].'</p>';		
 	}
 	
 	public function manager_index() {
@@ -124,12 +125,13 @@ class Companion{
 		}
 		
 		$record=$q->fetch();
-		echo 'Name: '.$record['name'].'<br>';
-		echo 'Picture URL: '.$record['picture'].'<br>';
-		echo 'Age: '.$record['age'].'<br>';
-		echo 'Gender: '.$record['gender'].'<br>';
-		echo 'Size: '.$record['size'].'<br>';
-		echo 'Health: '.$record['health'].'<br>';
+		echo '<head><title>'.$record['name'].'</title></head>';
+		echo '<h1 "align:center">'.$record['name'].'</h1>';
+		echo '<img src='.$record['picture'].' alt="Companion Picture" style="height:400px"><br><br> ';
+		echo '<p>Age: '.$record['age'].'</p>';
+		echo '<p>Gender: '.$record['gender'].'</p>';
+		echo '<p>Size: '.$record['size'].'</p>';
+		echo '<p>Health: '.$record['health'].'</p>';
 		echo '<a href="comp_edit.php?id='.$record['id'].'" style="margin-left:0px; margin-right:20px; color:blue;">Edit</a>';
 		echo '<a href="comp_delete.php?id='.$record['id'].'" style="color:red;">Delete</a>';
 	}

@@ -3,6 +3,7 @@ if(count($_POST)>0) {
 	require_once('../classes/database.php');
 	DB::connect();
 	require_once('../classes/companion.php');
+	require_once('../classes/template.php');
 	
 	
 	$companion=new Companion;
@@ -65,12 +66,3 @@ if(count($_POST)>0) {
 	</div>
 </body>
 </html>
-
-<form action="create.php" method="POST">
-Name: <br><input type="text" name="name"><br>
-Gender: <br><input type="text" name="gender"><br>
-Age:    <br><input type="text" name="age"><br>
-Size:   <br><input type="text" name="size"><br>
-Health: <br><input type="text" name="health"><br>
-Picture URL: <br><input type="text" name="picture"><br>
-<input type="submit">

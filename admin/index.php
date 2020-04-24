@@ -1,5 +1,7 @@
 <?php
 require_once('../classes/database.php');
+require_once('../classes/template.php');
+}
 ?>
 
 <html>
@@ -10,7 +12,7 @@ require_once('../classes/database.php');
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<title>Admin</title>
+		<title>Admin Index</title>
 		
 		  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -19,6 +21,7 @@ require_once('../classes/database.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 <body>
+<h1>Welcome to the Admin Section</h1>
 <p><a href="users/user_index.php">Manage Users</p>
 <p><a href="comp/comp_index.php">Manage Companions</p>
 </body>
